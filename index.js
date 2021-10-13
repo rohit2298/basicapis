@@ -29,11 +29,11 @@ request('https://demo7242716.mockable.io/products', function (error, response, b
 
       var newArray2 = importedJSON.products.filter(function (e2)
 {
-  return e2.primaryColour == "Black";
+  return e2.gender == "Men";
 }
     );
 
-    app.get('/black', (req, res) => {
+    app.get('/Men', (req, res) => {
       return res.send(newArray2);
         
        
