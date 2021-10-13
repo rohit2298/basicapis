@@ -26,6 +26,20 @@ request('https://demo7242716.mockable.io/products', function (error, response, b
           
          
       });
+
+      var newArray2 = importedJSON.products.filter(function (e2)
+{
+  return e2.primaryColour == "Black";
+}
+    );
+
+    app.get('/black', (req, res) => {
+      return res.send(newArray2);
+        
+       
+    });
+
+
      
   }
 
