@@ -7,46 +7,30 @@ const port = 3000;
 request('https://demo7242716.mockable.io/products', function (error, response, body) {
   if (!error && response.statusCode == 200) {
      var importedJSON = JSON.parse(body);
-     
 
      app.get('/', (req,res) =>{
-         return res.send(importedJSON);
+      return res.send(importedJSON);
      });
 
 
+     app.get('/product', (req, res) => {
+      let filter = req.query;
+   
 
-    var newArray = importedJSON.products.filter(function (el)
-{
-  return el.brand == "Roadster";
-}
-    );
+  var  newArray= importedJSON.products.filter(function(item) {
+    for (var key in filter) {
+      if (item[key] === undefined || item[key] != filter[key])
+        return false;
+    }
+    return true;
+  });
     
-    app.get('/Roadster', (req, res) => {
-        return res.send(newArray);
+      return  res.send(newArray); 
           
          
       });
-
-      var newArray2 = importedJSON.products.filter(function (e2)
-{
-  return e2.gender == "Men";
-}
-    );
-
-    app.get('/Men', (req, res) => {
-      return res.send(newArray2);
-        
-       
-    });
-
-
-     
   }
 
 })
-
-
-
-
 
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`));
