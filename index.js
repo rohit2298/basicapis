@@ -8,12 +8,12 @@ request('https://demo7242716.mockable.io/products', function (error, response, b
   if (!error && response.statusCode == 200) {
      var importedJSON = JSON.parse(body);
 
-     app.get('/', (req,res) =>{
+    app.get('/', (req,res) =>{
       return res.send(importedJSON);
      });
 
 
-     app.get('/product', (req, res) => {
+    app.get('/product', (req, res) => {
       let filter = req.query;
    
 
@@ -21,14 +21,13 @@ request('https://demo7242716.mockable.io/products', function (error, response, b
     for (var key in filter) {
       if (item[key] === undefined || item[key] != filter[key])
         return false;
-    }
-    return true;
+      }
+      return true;
   });
     
-      return  res.send(newArray); 
+  return  res.send(newArray); 
           
-         
-      });
+   });
   }
 
 })
